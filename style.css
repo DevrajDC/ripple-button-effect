@@ -1,0 +1,102 @@
+.HOVER {
+  --width: 100%;
+  --time: 0.7s;
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  padding: 1em;
+  border-radius: 8px;
+  color: white;
+  background: #0f117a;
+  overflow: hidden;
+}
+.HOVER text {
+  position: relative;
+  z-index: 5;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color var(--time);
+}
+.HOVER span {
+  position: absolute;
+  display: block;
+  content: "";
+  z-index: 0;
+  width: 0;
+  height: 0;
+  border-radius: 100%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  transition: width var(--time), padding-top var(--time);
+}
+.HOVER:hover span {
+  width: calc(var(--width) * 2.25);
+  padding-top: calc(var(--width) * 2.25);
+}
+.HOVER.FLASH:hover text {
+  color: white;
+}
+.HOVER.FLASH span {
+  background: #fc5185;
+}
+.animated {
+  --angle: 5deg;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  25% {
+    transform: rotate(calc(var(--angle) * -1));
+  }
+  50% {
+    transform: rotate(var(--angle));
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+/* next button */
+body {
+  height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+button {
+  position: relative;
+  overflow: hidden;
+  transition: background 400ms;
+  color: #fff;
+  background-color: #6200ee;
+  padding: 1rem 2rem;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  outline: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3); /* black with 30% opacity */
+  cursor: pointer;
+}
+
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
